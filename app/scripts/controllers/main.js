@@ -11,16 +11,25 @@
 angular.module('angularGemStoreApp')
   .controller('MainCtrl', function () {
   })
-  .directive('productDescription',function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'views/product-description.html'
+  .controller('StoreController', function () {
+    this.products = gems;
+  })
+  .controller('GalleryController', function(){
+    this.current = 0;
+    this.setCurrent = function(newGallery){
+      this.current = newGallery || 0;
+    };
+    this.isCurrent = function(imageName){
+      return this.current === imageName;
     };
   })
-  .directive('productSpecs',function(){
-    return {
-      restrict: 'A',
-      templateUrl: 'views/product-specs.html'
+   .controller('ReviewController', function () {
+    this.review={};
+    this.addReview = function(product){
+      this.review.createdOn = Date.now();
+      console.log(this.review.createdOn);
+      product.reviews.push(this.review);
+      this.review={};
     };
   })
   .directive('productTabs',function(){
@@ -41,38 +50,25 @@ angular.module('angularGemStoreApp')
     controllerAs: 'tab'
     };
   })
-  .controller('StoreController', function () {
-    this.products = gems;
-  })
-  .controller('GalleryController', function(){
-    this.current = 0;
-    this.setCurrent = function(newGallery){
-      this.current = newGallery || 0;
-    };
-    this.isCurrent = function(imageName){
-      return this.current === imageName;
+  .directive('productDescription',function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'views/product-description.html'
     };
   })
-  .controller('ReviewController', function () {
-    this.review={};
-    this.addReview = function(product){
-      this.review.createdOn = Date.now();
-      console.log(this.review.createdOn);
-      product.reviews.push(this.review);
-      this.review={};
+  .directive('productSpecs',function(){
+    return {
+      restrict: 'A',
+      templateUrl: 'views/product-specs.html'
     };
   })
-  .controller('TabController', function () {
-    this.tab = 1;
-
-    this.setTab = function(newValue){
-      this.tab = newValue;
-    };
-
-    this.isSet = function(tabName){
-      return this.tab === tabName;
+  .directive('productReviews',function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'views/product-reviews.html'
     };
   });
+  
 
 var gems = [{
       name: 'Azurite',
