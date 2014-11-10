@@ -8,16 +8,40 @@
  *
  * Main module of the application.
  */
-angular
-  .module('angularGemStoreApp', [
+// angular
+//   .module('angularGemStoreApp', [
+//     'ngAnimate',
+//     'ngCookies',
+//     'ngResource',
+//     'ngRoute',
+//     'ngSanitize',
+//     'ngTouch'
+//   ])
+//   .config(function ($routeProvider) {
+//     $routeProvider
+//       .when('/', {
+//         templateUrl: 'views/main.html',
+//         controller: 'MainCtrl'
+//       })
+//       .when('/about', {
+//         templateUrl: 'views/about.html',
+//         controller: 'AboutCtrl'
+//       })
+//       .otherwise({
+//         redirectTo: '/'
+//       });
+//   });
+
+(function() {
+  var app = angular.module('angularGemStoreApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+  ]);
+  app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -31,3 +55,6 @@ angular
         redirectTo: '/'
       });
   });
+})();
+
+
