@@ -14,22 +14,26 @@ angular.module('angularGemStoreApp')
   .controller('StoreController', function () {
     this.products = gems;
   })
-  .controller('GalleryController', function(){
-    this.current = 0;
-    this.setCurrent = function(newGallery){
-      this.current = newGallery || 0;
-    };
-    this.isCurrent = function(imageName){
-      return this.current === imageName;
-    };
-  })
-   .controller('ReviewController', function () {
+  .controller('ReviewController', function () {
     this.review={};
     this.addReview = function(product){
       this.review.createdOn = Date.now();
       console.log(this.review.createdOn);
       product.reviews.push(this.review);
       this.review={};
+    };
+  })
+   .directive("productGallery", function() {
+    return {
+      restrict: "E",
+      templateUrl: "views/product-gallery.html",
+      controller: function(){
+    this.current = 0;
+    this.setCurrent = function(imageNumber){
+      this.current = imageNumber || 0;
+    };
+  },
+      controllerAs: "gallery"
     };
   })
   .directive('productTabs',function(){
