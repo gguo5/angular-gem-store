@@ -34,6 +34,7 @@
 
 (function() {
   var app = angular.module('angularGemStoreApp', [
+    'gemstore',
     'ngAnimate',
     'ngCookies',
     'ngResource',

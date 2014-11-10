@@ -1,20 +1,11 @@
-'use strict';
-
-/**
- * @ngdoc function
- * @name angularGemStoreApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the angularGemStoreApp
- */
-
-angular.module('angularGemStoreApp')
-  .controller('MainCtrl', function () {
-  })
-  .controller('StoreController', function () {
+(function() {
+  var app = angular.module('gemstore', []);
+  app.controller('MainCtrl', function () {
+  });
+  app.controller('StoreController', function () {
     this.products = gems;
-  })
-  .controller('ReviewController', function () {
+  });
+  app.controller('ReviewController', function () {
     this.review={};
     this.addReview = function(product){
       this.review.createdOn = Date.now();
@@ -22,8 +13,8 @@ angular.module('angularGemStoreApp')
       product.reviews.push(this.review);
       this.review={};
     };
-  })
-   .directive("productGallery", function() {
+  });
+  app.directive("productGallery", function() {
     return {
       restrict: "E",
       templateUrl: "views/product-gallery.html",
@@ -35,8 +26,8 @@ angular.module('angularGemStoreApp')
   },
       controllerAs: "gallery"
     };
-  })
-  .directive('productTabs',function(){
+  });
+  app.directive('productTabs',function(){
     return {
       restrict: 'E',
       templateUrl: 'views/product-tabs.html',
@@ -53,26 +44,25 @@ angular.module('angularGemStoreApp')
     },
     controllerAs: 'tab'
     };
-  })
-  .directive('productDescription',function(){
+  });
+  app.directive('productDescription',function(){
     return {
       restrict: 'E',
       templateUrl: 'views/product-description.html'
     };
-  })
-  .directive('productSpecs',function(){
+  });
+  app.directive('productSpecs',function(){
     return {
       restrict: 'A',
       templateUrl: 'views/product-specs.html'
     };
-  })
-  .directive('productReviews',function(){
+  });
+  app.directive('productReviews',function(){
     return {
       restrict: 'E',
       templateUrl: 'views/product-reviews.html'
     };
   });
-  
 
 var gems = [{
       name: 'Azurite',
@@ -153,3 +143,4 @@ var gems = [{
       }]
     }];
 
+})();
